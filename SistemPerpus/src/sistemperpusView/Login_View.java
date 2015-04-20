@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistemperpus.view;
+package sistemperpusView;
 
-import sistemperpus.model.Login;
+import sistemperpusModel.Login;
 import javax.swing.JOptionPane;
 
 /**
