@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<config>
+  <buku isbn="978-1118031964">
+    <judul>The Art of Software Testing</judul>
+    <penerbit>Wiley</penerbit>
+    <author>Glenford J. Myers</author>
+    <sinopsis>The classic guide to software testing.</sinopsis>
+    <noRak>3A</noRak>
+    <stok>15</stok>
+  </buku>
+  <buku isbn="978-0439023528">
+    <judul>The Hunger Games</judul>
+    <penerbit>Scholastic Press</penerbit>
+    <author>Suzanne Collins</author>
+    <sinopsis>"The Hunger Games," a fight to the death on live TV.</sinopsis>
+    <noRak>131F</noRak>
+    <stok>3</stok>
+  </buku>
+  <buku isbn="978-0141441375">
+    <judul>What Maisie Knew</judul>
+    <penerbit>Penguin Classic</penerbit>
+    <author>Henry James</author>
+    <sinopsis>A book with damning potrait of jealousy.</sinopsis>
+    <noRak>131H</noRak>
+    <stok>2</stok>
+  </buku>
+</config> 

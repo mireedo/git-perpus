@@ -5,23 +5,23 @@
  */
 package sistemperpusView;
 
-import sistemperpusModel.Login;
+import sistemperpusController.loginController;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Mira
  */
-public class Login_View extends javax.swing.JFrame {
+public class loginView extends javax.swing.JFrame {
 
     /**
      * Creates new form PerpusUI
      */
-        Login A;
+    private loginController controller = new loginController();
     
-    public Login_View() {
+    public loginView() {
         initComponents();
-        A = new Login("121524019","mira");
+        //A = new Login("121524019","mira");
     }
 
     /**
@@ -129,12 +129,12 @@ public class Login_View extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
-        if(A.Login(usernameBox.getText(),passwordBox.getText(), A.attempt))
-                {
-                    JOptionPane.showMessageDialog(null,"Login Berhasil!");
-                }
-        else
-             JOptionPane.showMessageDialog(null,"Login Gagal!");
+        try {
+            System.out.println("Masuk ke loginbuttonactionperformed");
+            controller.login(usernameBox.getText(),passwordBox.getText());
+        } catch (Exception er) {
+            
+        }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void passwordBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordBoxActionPerformed
@@ -162,21 +162,23 @@ public class Login_View extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login_View().setVisible(true);
+                new loginView().setVisible(true);
             }
         });
     }
