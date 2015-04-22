@@ -12,7 +12,7 @@ import sistemperpusView.*;
  * @author Mira
  */
 public class loginController {
-    public void startApplication(){
+    public void openLogin(){
         loginView view = new loginView();
         view.setVisible(true);
     }

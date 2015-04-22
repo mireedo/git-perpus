@@ -6,7 +6,6 @@
 package sistemperpusRepositories;
 import java.util.ArrayList;
 import java.util.List;
-
 import sistemperpusModel.Buku;
 /**
  *
@@ -21,7 +20,7 @@ public class bukuRepository implements Repository<Buku> {
     private String noRak;
     private int stok;
     
-    List<Buku> list = new ArrayList<Buku>();
+    List<Buku> list = new ArrayList<>();
     
     public List<Buku> createData(){
         Buku A = new Buku("978-1118031964", "The Art of Software Testing", 

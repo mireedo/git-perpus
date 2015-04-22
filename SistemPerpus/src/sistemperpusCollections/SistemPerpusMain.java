@@ -16,7 +16,7 @@ import sistemperpusModel.*;
 public class SistemPerpusMain {
      public static void main(String[] args) {
         // TODO code application logic here
-        loginController controller = new loginController();
+        searchController controller = new searchController();
         // Start the application
         controller.startApplication();
     }

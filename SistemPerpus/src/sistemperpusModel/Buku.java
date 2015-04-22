@@ -5,7 +5,10 @@
  ***********************************************************************/
 
 package sistemperpusModel;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import sistemperpusRepositories.bukuRepository;
 
 public class Buku { //implements ILibrary, IBuku
    private String isbn;
@@ -16,6 +19,8 @@ public class Buku { //implements ILibrary, IBuku
    private String noRak;
    private int stok;
    
+   bukuRepository repository = new bukuRepository ();
+   
    public Buku (String ISBN, String Judul, String Penerbit, String Author, 
            String Sinopsis, String Rak, int Stok) {
         this.isbn = ISBN;
@@ -25,6 +30,17 @@ public class Buku { //implements ILibrary, IBuku
         this.sinopsis = Sinopsis;
         this.noRak = Rak;
         this.stok = Stok;
+   }//b = string.matches("(?i).*i am.*");
+   
+   public List<Buku> cariBuku (String keyword){
+        List<Buku> list = repository.FindAll();
+        List<Buku> result = new ArrayList();
+        for (Buku list1 : list) {
+            if ((list1.getJudul()).matches("(?i).*"+keyword+"*")) {
+                result.add(list1);
+            }
+        }
+        return result;
    }
    
    public String getISBN() {
