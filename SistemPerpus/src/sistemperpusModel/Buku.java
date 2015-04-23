@@ -36,7 +36,8 @@ public class Buku { //implements ILibrary, IBuku
         List<Buku> list = repository.FindAll();
         List<Buku> result = new ArrayList();
         for (Buku list1 : list) {
-            if ((list1.getJudul()).matches("(?i).*"+keyword+"*")) {
+            System.out.println(list1.getJudul());
+            if (((list1.getJudul().toLowerCase()).indexOf(keyword)) >= 0 ) {
                 result.add(list1);
             }
         }
