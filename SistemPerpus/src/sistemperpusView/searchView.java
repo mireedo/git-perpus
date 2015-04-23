@@ -5,7 +5,7 @@
  */
 package sistemperpusView;
 import java.util.List;
-import sistemperpusController.searchController;
+import sistemperpusController.*;
 
 /**
  *
@@ -18,6 +18,7 @@ public class searchView extends javax.swing.JFrame {
      */
     
     searchController controller = new searchController();
+    loginController Lcontroller = new loginController();
     public searchView() {
         initComponents();
     }
@@ -41,7 +42,7 @@ public class searchView extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jScrollBar1 = new javax.swing.JScrollBar();
-        jButton2 = new javax.swing.JButton();
+        loginButton = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -66,7 +67,12 @@ public class searchView extends javax.swing.JFrame {
 
         jLabel1.setText("Hasil Pencarian:");
 
-        jButton2.setText("Pengembalian");
+        loginButton.setText("Log In");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,8 +90,8 @@ public class searchView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cariButton))
                             .addComponent(title))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                        .addComponent(loginButton))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
@@ -101,7 +107,7 @@ public class searchView extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(loginButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -126,6 +132,11 @@ public class searchView extends javax.swing.JFrame {
         // TODO add your handling code here
         System.out.println((controller.cariBuku(keywordBox.getText())).size());
     }//GEN-LAST:event_cariButtonActionPerformed
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        // TODO add your handling code here:
+        Lcontroller.openLogin();
+    }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,7 +175,6 @@ public class searchView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cariButton;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -173,6 +183,7 @@ public class searchView extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextPane keywordBox;
     private javax.swing.JLabel labelCariBuku;
+    private javax.swing.JButton loginButton;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

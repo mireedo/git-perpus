@@ -6,7 +6,6 @@
 package sistemperpusView;
 
 import sistemperpusController.loginController;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,7 +16,7 @@ public class loginView extends javax.swing.JFrame {
     /**
      * Creates new form PerpusUI
      */
-    private loginController controller = new loginController();
+    private final loginController controller = new loginController();
     
     public loginView() {
         initComponents();
@@ -130,7 +129,10 @@ public class loginView extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             System.out.println("Masuk ke loginbuttonactionperformed");
-            controller.login(usernameBox.getText(),passwordBox.getText());
+            if(controller.login(usernameBox.getText(),passwordBox.getText())){
+                setVisible(false);
+                dispose();
+            }
         } catch (Exception er) {
             
         }
@@ -176,6 +178,7 @@ public class loginView extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new loginView().setVisible(true);
             }

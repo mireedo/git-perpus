@@ -17,13 +17,16 @@ public class loginController {
         view.setVisible(true);
     }
     
-    public void login (String NIPM, String passwd){
+    public Boolean login (String NIPM, String passwd){
         System.out.println("Masuk fungsi login controller");
         Anggota A = new Anggota(NIPM, passwd);
         if(A.Login(NIPM, passwd)){
             JOptionPane.showMessageDialog(null,"Login Berhasil!");
+            return true;
         }
-        else
+        else {
             JOptionPane.showMessageDialog(null,"Login Gagal!");
+            return false;
+        }  
     }
 }
