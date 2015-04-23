@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package sistemperpusView;
+import java.util.ArrayList;
 import java.util.List;
 import sistemperpusController.*;
 
@@ -130,7 +131,12 @@ public class searchView extends javax.swing.JFrame {
 
     private void cariButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariButtonActionPerformed
         // TODO add your handling code here
-        System.out.println((controller.cariBuku(keywordBox.getText())).size());
+        List<String> list = new ArrayList<>();
+        list = controller.cariBuku(keywordBox.getText());
+        for (Object list1 : list) {
+            System.out.println(list1.toString());
+        }
+        System.out.println("Total : "+list.size());
     }//GEN-LAST:event_cariButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed

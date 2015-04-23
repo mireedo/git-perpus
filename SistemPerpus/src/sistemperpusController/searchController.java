@@ -19,8 +19,13 @@ public class searchController {
         view.setVisible(true);
     }
     
-    public List<Buku> cariBuku(String keyword){
+    public List<String> cariBuku(String keyword){
+        List <String> result = new ArrayList<>();
         Buku A = new Buku ("","","","","","",0);
-        return A.cariBuku(keyword);
+        List <Buku> temp =  A.cariBuku(keyword);
+        for (Buku temp1 : temp) {
+            result.add(temp1.getJudul());
+        }
+        return result;
     }
 }
