@@ -4,11 +4,7 @@
  * and open the template in the editor.
  */
 package sistemperpusCollections;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import sistemperpusController.*;
-import sistemperpusModel.*;
 /**
  *
  * @author Mira
