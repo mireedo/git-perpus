@@ -20,7 +20,7 @@ public class bukuRepository implements Repository<Buku> {
     private String noRak;
     private int stok;
     
-    List<Buku> list = new ArrayList<>();
+    List<Buku> list = new ArrayList();
     
     public List<Buku> createData(){
         Buku A = new Buku("978-1118031964", "The Art of Software Testing", 
@@ -36,9 +36,16 @@ public class bukuRepository implements Repository<Buku> {
         return list;
     }
     
+    public void initData(){
+        try {
+            list = createData();
+        }
+        catch(Exception e){ 
+        }
+    }
+    
     @Override
     public List<Buku> FindAll() {
-        list = createData();
         return list;
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

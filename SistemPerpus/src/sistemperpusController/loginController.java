@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package sistemperpusController;
+import java.util.List;
 import javax.swing.JOptionPane;
 import sistemperpusModel.*;
 import sistemperpusView.*;
@@ -12,6 +13,7 @@ import sistemperpusView.*;
  * @author Mira
  */
 public class loginController {
+    
     public void openLogin(){
         loginView view = new loginView();
         view.setVisible(true);

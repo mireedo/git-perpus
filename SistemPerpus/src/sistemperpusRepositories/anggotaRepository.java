@@ -34,13 +34,17 @@ public class anggotaRepository implements Repository<Anggota> {
         return list;
     }
     
-    @Override
-    public List<Anggota> FindAll() {
+    public List<Anggota> initData() {
         try {
             list = createData();
         }
         catch(ParseException e){ 
         }
+        return list;
+    }
+    
+    @Override
+    public List<Anggota> FindAll() {
         return list;
     }
 

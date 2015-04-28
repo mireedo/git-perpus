@@ -100,7 +100,7 @@ public class Buku { //implements ILibrary, IBuku
    }
    
    public void addBuku(Buku buku) {
-      // TODO: implement
+      repository.add(buku);       
    }
    
    public void updateBuku(Buku buku) {
