@@ -95,6 +95,8 @@ public class olahBukuView extends javax.swing.JFrame {
         menuAdmin = new javax.swing.JMenu();
         menuDataAnggota = new javax.swing.JMenuItem();
         menuDataBuku = new javax.swing.JMenuItem();
+        menuDataPinjam = new javax.swing.JMenuItem();
+        menuDataKembali = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -402,6 +404,12 @@ public class olahBukuView extends javax.swing.JFrame {
         });
         menuAdmin.add(menuDataBuku);
 
+        menuDataPinjam.setText("Data Peminjaman");
+        menuAdmin.add(menuDataPinjam);
+
+        menuDataKembali.setText("Data Pengembalian");
+        menuAdmin.add(menuDataKembali);
+
         jMenuBar1.add(menuAdmin);
 
         setJMenuBar(jMenuBar1);
@@ -439,6 +447,8 @@ public class olahBukuView extends javax.swing.JFrame {
         // TODO add your handling code here:
         controller.addBuku(boxISBN.getText(), boxJudul.getText(), boxPenerbit.getText(), 
                 boxAuthor.getText(), boxSinopsis.getText(), boxNorak.getText(), (int) boxStok.getValue(), repBuku);
+        this.jTabbedPane1.setSelectedIndex(0);
+        ShowResult(repBuku);
     }//GEN-LAST:event_submitActionPerformed
 
     private void menuDataAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDataAnggotaActionPerformed
@@ -579,6 +589,8 @@ public class olahBukuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuCari;
     private javax.swing.JMenuItem menuDataAnggota;
     private javax.swing.JMenuItem menuDataBuku;
+    private javax.swing.JMenuItem menuDataKembali;
+    private javax.swing.JMenuItem menuDataPinjam;
     private javax.swing.JMenuItem menuDenda;
     private javax.swing.JMenuItem menuKembali;
     private javax.swing.JMenu menuMember;

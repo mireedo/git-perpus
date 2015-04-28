@@ -61,6 +61,10 @@ public class Anggota {
         }
     }
     
+    public List<Anggota> getAll(){
+        return repository.FindAll();
+    }
+    
     public String getNIPM (){
         return this.nipm;
     }

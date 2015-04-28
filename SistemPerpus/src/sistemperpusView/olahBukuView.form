@@ -47,6 +47,16 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuDataBukuActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuDataPinjam">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Data Peminjaman"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuDataKembali">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Data Pengembalian"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
       </SubComponents>

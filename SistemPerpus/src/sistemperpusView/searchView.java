@@ -30,7 +30,8 @@ public class searchView extends javax.swing.JFrame {
     
     searchController controller = new searchController();//(repBuku, repAnggota);
     loginController Lcontroller = new loginController();
-    olahBukuController Bcontroller = new olahBukuController();
+    olahAnggotaController Acontroller = new olahAnggotaController();
+    olahBukuController  Bcontroller = new olahBukuController();
     public searchView() {
         initComponents();
         this.resultTable.setModel(model);
@@ -73,6 +74,8 @@ public class searchView extends javax.swing.JFrame {
         menuAdmin = new javax.swing.JMenu();
         menuDataAnggota = new javax.swing.JMenuItem();
         menuDataBuku = new javax.swing.JMenuItem();
+        menuDataPinjam = new javax.swing.JMenuItem();
+        menuDataKembali = new javax.swing.JMenuItem();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -164,6 +167,12 @@ public class searchView extends javax.swing.JFrame {
             }
         });
         menuAdmin.add(menuDataBuku);
+
+        menuDataPinjam.setText("Data Peminjaman");
+        menuAdmin.add(menuDataPinjam);
+
+        menuDataKembali.setText("Data Pengembalian");
+        menuAdmin.add(menuDataKembali);
 
         jMenuBar1.add(menuAdmin);
 
@@ -259,6 +268,9 @@ public class searchView extends javax.swing.JFrame {
 
     private void menuDataAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDataAnggotaActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        Acontroller.openAnggota();
+        dispose();
     }//GEN-LAST:event_menuDataAnggotaActionPerformed
 
     private void menuDataBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDataBukuActionPerformed
@@ -370,6 +382,8 @@ public class searchView extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuCari;
     private javax.swing.JMenuItem menuDataAnggota;
     private javax.swing.JMenuItem menuDataBuku;
+    private javax.swing.JMenuItem menuDataKembali;
+    private javax.swing.JMenuItem menuDataPinjam;
     private javax.swing.JMenuItem menuDenda;
     private javax.swing.JMenuItem menuKembali;
     private javax.swing.JMenu menuMember;
