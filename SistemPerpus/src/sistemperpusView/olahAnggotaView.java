@@ -5,7 +5,10 @@
  */
 package sistemperpusView;
 
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -19,6 +22,7 @@ import sistemperpusModel.*;
 public class olahAnggotaView extends javax.swing.JFrame {
     List<Anggota> repAnggota = new ArrayList();
     Anggota temp;
+    SimpleDateFormat dt = new SimpleDateFormat("dd/MM/YYYY");
     olahAnggotaController controller = new olahAnggotaController();
     DefaultTableModel model = new DefaultTableModel();
     /**
@@ -29,10 +33,14 @@ public class olahAnggotaView extends javax.swing.JFrame {
         initComponents();
         this.resultTable.setModel(model);
         model.addColumn("NIP/NIM");
+        model.addColumn("Password");
         model.addColumn("Jabatan");
         model.addColumn("Total Pinjaman");
         model.addColumn("Tgl. Expire");
         model.addColumn("Denda");
+        resultTable.getColumn("Password").setMaxWidth(0);
+        resultTable.getColumn("Password").setMinWidth(0);
+        resultTable.getColumn("Password").setPreferredWidth(0);
         ShowResult(repAnggota);
     }
 
@@ -50,42 +58,16 @@ public class olahAnggotaView extends javax.swing.JFrame {
         panelReadDelete = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         resultTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        updateButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
         panelAdd = new javax.swing.JPanel();
-        label_isbn = new javax.swing.JLabel();
-        label_judul = new javax.swing.JLabel();
-        label_penerbit = new javax.swing.JLabel();
-        label_author = new javax.swing.JLabel();
-        label_sinopsis = new javax.swing.JLabel();
-        label_norak = new javax.swing.JLabel();
-        label_stok = new javax.swing.JLabel();
-        boxISBN = new javax.swing.JTextField();
-        boxJudul = new javax.swing.JTextField();
-        boxAuthor = new javax.swing.JTextField();
-        boxPenerbit = new javax.swing.JTextField();
-        boxNorak = new javax.swing.JTextField();
-        boxStok = new javax.swing.JSpinner();
+        label_NIPM = new javax.swing.JLabel();
+        label_password = new javax.swing.JLabel();
+        label_jabatan = new javax.swing.JLabel();
+        boxNIPM = new javax.swing.JTextField();
+        boxJabatan = new javax.swing.JTextField();
         submit = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        boxSinopsis = new javax.swing.JTextPane();
-        panelUpdate = new javax.swing.JPanel();
-        label_isbn1 = new javax.swing.JLabel();
-        label_judul1 = new javax.swing.JLabel();
-        boxJudul1 = new javax.swing.JTextField();
-        label_author1 = new javax.swing.JLabel();
-        boxAuthor1 = new javax.swing.JTextField();
-        label_penerbit1 = new javax.swing.JLabel();
-        boxPenerbit1 = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        boxSinopsis1 = new javax.swing.JTextPane();
-        label_sinopsis1 = new javax.swing.JLabel();
-        label_norak1 = new javax.swing.JLabel();
-        boxNorak1 = new javax.swing.JTextField();
-        boxStok1 = new javax.swing.JSpinner();
-        label_stok1 = new javax.swing.JLabel();
-        submit1 = new javax.swing.JButton();
-        comboISBN = new javax.swing.JComboBox();
+        boxPassword = new javax.swing.JPasswordField();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuMember = new javax.swing.JMenu();
         menuCari = new javax.swing.JMenuItem();
@@ -129,17 +111,17 @@ public class olahAnggotaView extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(resultTable);
 
-        jButton1.setText("Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        updateButton.setText("Update");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                updateButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Delete");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        deleteButton.setText("Delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                deleteButtonActionPerformed(evt);
             }
         });
 
@@ -150,9 +132,9 @@ public class olahAnggotaView extends javax.swing.JFrame {
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelReadDeleteLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(deleteButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(updateButton)
                 .addContainerGap())
         );
         panelReadDeleteLayout.setVerticalGroup(
@@ -161,41 +143,27 @@ public class olahAnggotaView extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(panelReadDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(updateButton)
+                    .addComponent(deleteButton))
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Data Buku", panelReadDelete);
+        jTabbedPane1.addTab("Data Anggota", panelReadDelete);
 
-        label_isbn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_isbn.setText("ISBN");
+        label_NIPM.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label_NIPM.setText("NIP/NIM");
 
-        label_judul.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_judul.setText("Judul Buku");
+        label_password.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label_password.setText("Password");
 
-        label_penerbit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_penerbit.setText("Penerbit");
+        label_jabatan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label_jabatan.setText("Jabatan");
 
-        label_author.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_author.setText("Pengarang");
-
-        label_sinopsis.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_sinopsis.setText("Sinopsis");
-
-        label_norak.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_norak.setText("No. Rak");
-
-        label_stok.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_stok.setText("Stok");
-
-        boxISBN.addActionListener(new java.awt.event.ActionListener() {
+        boxNIPM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxISBNActionPerformed(evt);
+                boxNIPMActionPerformed(evt);
             }
         });
-
-        boxStok.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
 
         submit.setText("Submit");
         submit.addActionListener(new java.awt.event.ActionListener() {
@@ -204,173 +172,48 @@ public class olahAnggotaView extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(boxSinopsis);
-
         javax.swing.GroupLayout panelAddLayout = new javax.swing.GroupLayout(panelAdd);
         panelAdd.setLayout(panelAddLayout);
         panelAddLayout.setHorizontalGroup(
             panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAddLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(label_isbn)
-                        .addComponent(label_judul)
-                        .addComponent(label_stok)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_penerbit)
-                            .addComponent(label_author)))
-                    .addComponent(label_sinopsis)
-                    .addComponent(label_norak))
-                .addGap(44, 44, 44)
-                .addGroup(panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boxNorak, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxJudul, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxPenerbit, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxStok, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(176, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAddLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(submit)
-                .addGap(35, 35, 35))
+                .addGap(110, 110, 110))
+            .addGroup(panelAddLayout.createSequentialGroup()
+                .addGap(197, 197, 197)
+                .addGroup(panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label_NIPM)
+                    .addComponent(label_password)
+                    .addComponent(label_jabatan))
+                .addGap(44, 44, 44)
+                .addGroup(panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(boxNIPM, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                    .addComponent(boxJabatan, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                    .addComponent(boxPassword))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
         panelAddLayout.setVerticalGroup(
             panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAddLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(124, 124, 124)
                 .addGroup(panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_isbn)
-                    .addComponent(boxISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boxJudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_judul))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boxAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_author))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boxPenerbit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_penerbit))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_sinopsis)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(label_NIPM)
+                    .addComponent(boxNIPM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boxNorak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_norak))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(label_password)
+                    .addComponent(boxPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addGroup(panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_stok)
-                    .addComponent(boxStok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(submit)
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Tambah Buku", panelAdd);
-
-        label_isbn1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_isbn1.setText("ISBN");
-
-        label_judul1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_judul1.setText("Judul Buku");
-
-        label_author1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_author1.setText("Pengarang");
-
-        label_penerbit1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_penerbit1.setText("Penerbit");
-
-        jScrollPane2.setViewportView(boxSinopsis1);
-
-        label_sinopsis1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_sinopsis1.setText("Sinopsis");
-
-        label_norak1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_norak1.setText("No. Rak");
-
-        label_stok1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_stok1.setText("Stok");
-
-        submit1.setText("Submit");
-
-        comboISBN.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        javax.swing.GroupLayout panelUpdateLayout = new javax.swing.GroupLayout(panelUpdate);
-        panelUpdate.setLayout(panelUpdateLayout);
-        panelUpdateLayout.setHorizontalGroup(
-            panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelUpdateLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(label_isbn1)
-                        .addComponent(label_judul1)
-                        .addComponent(label_stok1)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_penerbit1)
-                            .addComponent(label_author1)))
-                    .addComponent(label_sinopsis1)
-                    .addComponent(label_norak1))
+                    .addComponent(boxJabatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_jabatan))
                 .addGap(44, 44, 44)
-                .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boxNorak1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxAuthor1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxPenerbit1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxStok1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(comboISBN, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(boxJudul1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)))
-                .addContainerGap(176, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelUpdateLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(submit1)
-                .addGap(35, 35, 35))
-        );
-        panelUpdateLayout.setVerticalGroup(
-            panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelUpdateLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_isbn1)
-                    .addComponent(comboISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boxJudul1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_judul1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boxAuthor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_author1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boxPenerbit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_penerbit1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_sinopsis1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boxNorak1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_norak1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_stok1)
-                    .addComponent(boxStok1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(submit1)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(submit)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Update Buku", panelUpdate);
+        jTabbedPane1.addTab("Tambah Anggota", panelAdd);
 
         menuMember.setText("Anggota");
 
@@ -438,14 +281,16 @@ public class olahAnggotaView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boxISBNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxISBNActionPerformed
+    private void boxNIPMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxNIPMActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_boxISBNActionPerformed
+    }//GEN-LAST:event_boxNIPMActionPerformed
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         // TODO add your handling code here:
-        repAnggota = controller.addAnggota(temp.getNIPM(), temp.getPassword(), temp.getJabatan(),
-                temp.getTotalPinjam(), temp.getTglExpire(), temp.getDenda(), repAnggota);
+        repAnggota = controller.addAnggota(boxNIPM.getText(), boxPassword.getText(), boxJabatan.getText(),
+                0, getDateAfter(180), 0.0, repAnggota);
+        this.jTabbedPane1.setSelectedIndex(0);
+        ShowResult(repAnggota);
     }//GEN-LAST:event_submitActionPerformed
 
     private void menuDataAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDataAnggotaActionPerformed
@@ -462,18 +307,18 @@ public class olahAnggotaView extends javax.swing.JFrame {
         getRowValue();
     }//GEN-LAST:event_resultTableMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
             // TODO add your handling code here:
         repAnggota  = controller.deleteAnggota(temp.getNIPM(), repAnggota);
         ShowResult(repAnggota);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         // TODO add your handling code here:
         repAnggota = controller.updateAnggota(temp.getNIPM(), temp.getPassword(), temp.getJabatan(),
                 temp.getTotalPinjam(), temp.getTglExpire(), temp.getDenda(), repAnggota);
         ShowResult(repAnggota);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_updateButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -517,13 +362,14 @@ public class olahAnggotaView extends javax.swing.JFrame {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         for(Object o : resultList){
-            Anggota temp = (Anggota)o;
-            Object[] oneRow = new Object[7];
-            oneRow[0] = (temp.getNIPM());
-            oneRow[1] = (temp.getJabatan());
-            oneRow[2] = (temp.getTotalPinjam());
-            oneRow[3] = (temp.getTglExpire());
-            oneRow[4] = (temp.getDenda());
+            Anggota A = (Anggota)o;
+            Object[] oneRow = new Object[6];
+            oneRow[0] = (A.getNIPM());
+            oneRow[1] = (A.getPassword());
+            oneRow[2] = (A.getJabatan());
+            oneRow[3] = (A.getTotalPinjam());
+            oneRow[4] = (A.getTglExpire());
+            oneRow[5] = (A.getDenda());
             
             model.addRow(oneRow);
         }
@@ -541,47 +387,29 @@ public class olahAnggotaView extends javax.swing.JFrame {
         int Total = (int)model.getValueAt(i, 3);
         Date Expire = (Date)model.getValueAt(i, 4);
         double Denda = (double)model.getValueAt(i, 5);
-        int stok = (int)model.getValueAt(i, 6);
         temp = new Anggota (NIPM, Passwd, Jabatan, Total, Expire, Denda);
         System.out.println(NIPM+Passwd);    
     }
+    
+    private Date getDateAfter (int days){
+        Date date = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        c.add(Calendar.DATE, days);
+        return c.getTime();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField boxAuthor;
-    private javax.swing.JTextField boxAuthor1;
-    private javax.swing.JTextField boxISBN;
-    private javax.swing.JTextField boxJudul;
-    private javax.swing.JTextField boxJudul1;
-    private javax.swing.JTextField boxNorak;
-    private javax.swing.JTextField boxNorak1;
-    private javax.swing.JTextField boxPenerbit;
-    private javax.swing.JTextField boxPenerbit1;
-    private javax.swing.JTextPane boxSinopsis;
-    private javax.swing.JTextPane boxSinopsis1;
-    private javax.swing.JSpinner boxStok;
-    private javax.swing.JSpinner boxStok1;
-    private javax.swing.JComboBox comboISBN;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTextField boxJabatan;
+    private javax.swing.JTextField boxNIPM;
+    private javax.swing.JPasswordField boxPassword;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JLabel label_author;
-    private javax.swing.JLabel label_author1;
-    private javax.swing.JLabel label_isbn;
-    private javax.swing.JLabel label_isbn1;
-    private javax.swing.JLabel label_judul;
-    private javax.swing.JLabel label_judul1;
-    private javax.swing.JLabel label_norak;
-    private javax.swing.JLabel label_norak1;
-    private javax.swing.JLabel label_penerbit;
-    private javax.swing.JLabel label_penerbit1;
-    private javax.swing.JLabel label_sinopsis;
-    private javax.swing.JLabel label_sinopsis1;
-    private javax.swing.JLabel label_stok;
-    private javax.swing.JLabel label_stok1;
+    private javax.swing.JLabel label_NIPM;
+    private javax.swing.JLabel label_jabatan;
+    private javax.swing.JLabel label_password;
     private javax.swing.JMenu menuAdmin;
     private javax.swing.JMenuItem menuCari;
     private javax.swing.JMenuItem menuDataAnggota;
@@ -593,10 +421,9 @@ public class olahAnggotaView extends javax.swing.JFrame {
     private javax.swing.JMenu menuMember;
     private javax.swing.JPanel panelAdd;
     private javax.swing.JPanel panelReadDelete;
-    private javax.swing.JPanel panelUpdate;
     private javax.swing.JTable resultTable;
     private javax.swing.JButton submit;
-    private javax.swing.JButton submit1;
     private javax.swing.JLabel title;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }

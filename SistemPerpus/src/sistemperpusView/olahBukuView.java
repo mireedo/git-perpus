@@ -70,23 +70,6 @@ public class olahBukuView extends javax.swing.JFrame {
         submit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         boxSinopsis = new javax.swing.JTextPane();
-        panelUpdate = new javax.swing.JPanel();
-        label_isbn1 = new javax.swing.JLabel();
-        label_judul1 = new javax.swing.JLabel();
-        boxJudul1 = new javax.swing.JTextField();
-        label_author1 = new javax.swing.JLabel();
-        boxAuthor1 = new javax.swing.JTextField();
-        label_penerbit1 = new javax.swing.JLabel();
-        boxPenerbit1 = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        boxSinopsis1 = new javax.swing.JTextPane();
-        label_sinopsis1 = new javax.swing.JLabel();
-        label_norak1 = new javax.swing.JLabel();
-        boxNorak1 = new javax.swing.JTextField();
-        boxStok1 = new javax.swing.JSpinner();
-        label_stok1 = new javax.swing.JLabel();
-        submit1 = new javax.swing.JButton();
-        comboISBN = new javax.swing.JComboBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuMember = new javax.swing.JMenu();
         menuCari = new javax.swing.JMenuItem();
@@ -276,103 +259,6 @@ public class olahBukuView extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Tambah Buku", panelAdd);
 
-        label_isbn1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_isbn1.setText("ISBN");
-
-        label_judul1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_judul1.setText("Judul Buku");
-
-        label_author1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_author1.setText("Pengarang");
-
-        label_penerbit1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_penerbit1.setText("Penerbit");
-
-        jScrollPane2.setViewportView(boxSinopsis1);
-
-        label_sinopsis1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_sinopsis1.setText("Sinopsis");
-
-        label_norak1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_norak1.setText("No. Rak");
-
-        label_stok1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        label_stok1.setText("Stok");
-
-        submit1.setText("Submit");
-
-        comboISBN.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        javax.swing.GroupLayout panelUpdateLayout = new javax.swing.GroupLayout(panelUpdate);
-        panelUpdate.setLayout(panelUpdateLayout);
-        panelUpdateLayout.setHorizontalGroup(
-            panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelUpdateLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(label_isbn1)
-                        .addComponent(label_judul1)
-                        .addComponent(label_stok1)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_penerbit1)
-                            .addComponent(label_author1)))
-                    .addComponent(label_sinopsis1)
-                    .addComponent(label_norak1))
-                .addGap(44, 44, 44)
-                .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boxNorak1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxAuthor1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxPenerbit1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxStok1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(comboISBN, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(boxJudul1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)))
-                .addContainerGap(176, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelUpdateLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(submit1)
-                .addGap(35, 35, 35))
-        );
-        panelUpdateLayout.setVerticalGroup(
-            panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelUpdateLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_isbn1)
-                    .addComponent(comboISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boxJudul1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_judul1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boxAuthor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_author1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boxPenerbit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_penerbit1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_sinopsis1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boxNorak1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_norak1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_stok1)
-                    .addComponent(boxStok1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(submit1)
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Update Buku", panelUpdate);
-
         menuMember.setText("Anggota");
 
         menuCari.setText("Cari Buku");
@@ -518,15 +404,15 @@ public class olahBukuView extends javax.swing.JFrame {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         for(Object o : resultList){
-            Buku temp = (Buku)o;
+            Buku A = (Buku)o;
             Object[] oneRow = new Object[7];
-            oneRow[0] = (temp.getISBN());
-            oneRow[1] = (temp.getJudul());
-            oneRow[2] = (temp.getAuthor());
-            oneRow[3] = (temp.getPenerbit());
-            oneRow[4] = (temp.getSinopsis());
-            oneRow[5] = (temp.getnoRak());
-            oneRow[6] = (temp.getStok());
+            oneRow[0] = (A.getISBN());
+            oneRow[1] = (A.getJudul());
+            oneRow[2] = (A.getAuthor());
+            oneRow[3] = (A.getPenerbit());
+            oneRow[4] = (A.getSinopsis());
+            oneRow[5] = (A.getnoRak());
+            oneRow[6] = (A.getStok());
             
             model.addRow(oneRow);
         }
@@ -551,40 +437,25 @@ public class olahBukuView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField boxAuthor;
-    private javax.swing.JTextField boxAuthor1;
     private javax.swing.JTextField boxISBN;
     private javax.swing.JTextField boxJudul;
-    private javax.swing.JTextField boxJudul1;
     private javax.swing.JTextField boxNorak;
-    private javax.swing.JTextField boxNorak1;
     private javax.swing.JTextField boxPenerbit;
-    private javax.swing.JTextField boxPenerbit1;
     private javax.swing.JTextPane boxSinopsis;
-    private javax.swing.JTextPane boxSinopsis1;
     private javax.swing.JSpinner boxStok;
-    private javax.swing.JSpinner boxStok1;
-    private javax.swing.JComboBox comboISBN;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel label_author;
-    private javax.swing.JLabel label_author1;
     private javax.swing.JLabel label_isbn;
-    private javax.swing.JLabel label_isbn1;
     private javax.swing.JLabel label_judul;
-    private javax.swing.JLabel label_judul1;
     private javax.swing.JLabel label_norak;
-    private javax.swing.JLabel label_norak1;
     private javax.swing.JLabel label_penerbit;
-    private javax.swing.JLabel label_penerbit1;
     private javax.swing.JLabel label_sinopsis;
-    private javax.swing.JLabel label_sinopsis1;
     private javax.swing.JLabel label_stok;
-    private javax.swing.JLabel label_stok1;
     private javax.swing.JMenu menuAdmin;
     private javax.swing.JMenuItem menuCari;
     private javax.swing.JMenuItem menuDataAnggota;
@@ -596,10 +467,8 @@ public class olahBukuView extends javax.swing.JFrame {
     private javax.swing.JMenu menuMember;
     private javax.swing.JPanel panelAdd;
     private javax.swing.JPanel panelReadDelete;
-    private javax.swing.JPanel panelUpdate;
     private javax.swing.JTable resultTable;
     private javax.swing.JButton submit;
-    private javax.swing.JButton submit1;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

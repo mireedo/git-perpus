@@ -14,7 +14,7 @@ import sistemperpusView.*;
  */
 public class olahAnggotaController {
 
-    Anggota A;
+    Anggota A = new Anggota("","");
    
     public void openAnggota (){
         olahAnggotaView view = new olahAnggotaView();
