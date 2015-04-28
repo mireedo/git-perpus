@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package sistemperpusController;
+import java.util.ArrayList;
 import java.util.List;
 import sistemperpusModel.*;
 import sistemperpusView.*;
@@ -13,12 +14,15 @@ import sistemperpusView.*;
  * @author Mira
  */
 public class searchController {
+    /*List<Buku> repBuku = new ArrayList();
+    List<Anggota> repAnggota = new ArrayList();
     public searchController (List<Buku> buku, List<Anggota> anggota){ 
+        this.repBuku = buku;
+        this.repAnggota = anggota;
     }
-    
     public searchController (){
         
-    }
+    }*/
 
     public void startApplication(){
         searchView view = new searchView();

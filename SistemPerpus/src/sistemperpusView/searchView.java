@@ -9,21 +9,38 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import sistemperpusController.*;
+import sistemperpusModel.*;
 
 /**
  *
  * @author Mira
  */
 public class searchView extends javax.swing.JFrame {
+    DefaultTableModel model = new DefaultTableModel();
+    //List<Buku> repBuku = new ArrayList();
+    //List<Anggota> repAnggota = new ArrayList();
+    //public searchView(List<Buku> buku, List<Anggota> anggota){
+        //this.repBuku = buku;
+        //this.repAnggota = anggota;
+    //}
 
     /**
      * Creates new form searchView
      */
     
-    searchController controller = new searchController();
+    searchController controller = new searchController();//(repBuku, repAnggota);
     loginController Lcontroller = new loginController();
+    olahBukuController Bcontroller = new olahBukuController();
     public searchView() {
         initComponents();
+        this.resultTable.setModel(model);
+        model.addColumn("ISBN");
+        model.addColumn("Judul");
+        model.addColumn("Pengarang");
+        model.addColumn("Penerbit");
+        model.addColumn("Sinopsis");
+        model.addColumn("No.Rak");
+        model.addColumn("Stok");
     }
 
     /**
@@ -44,10 +61,18 @@ public class searchView extends javax.swing.JFrame {
         cariButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        jScrollBar1 = new javax.swing.JScrollBar();
         loginButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         resultTable = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuMember = new javax.swing.JMenu();
+        menuCari = new javax.swing.JMenuItem();
+        menuKembali = new javax.swing.JMenuItem();
+        menuDenda = new javax.swing.JMenuItem();
+        menuAdmin = new javax.swing.JMenu();
+        menuDataAnggota = new javax.swing.JMenuItem();
+        menuDataBuku = new javax.swing.JMenuItem();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -81,26 +106,78 @@ public class searchView extends javax.swing.JFrame {
 
         resultTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
             }
-        ));
-        resultTable.setColumnSelectionAllowed(true);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         resultTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 resultTableMouseClicked(evt);
             }
         });
         jScrollPane3.setViewportView(resultTable);
-        resultTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        jButton1.setText("Pinjam");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        menuMember.setText("Anggota");
+
+        menuCari.setText("Cari Buku");
+        menuMember.add(menuCari);
+
+        menuKembali.setText("Pengembalian");
+        menuMember.add(menuKembali);
+
+        menuDenda.setText("Bayar Denda");
+        menuMember.add(menuDenda);
+
+        jMenuBar1.add(menuMember);
+
+        menuAdmin.setText("Admin");
+
+        menuDataAnggota.setText("Data Anggota");
+        menuDataAnggota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuDataAnggotaActionPerformed(evt);
+            }
+        });
+        menuAdmin.add(menuDataAnggota);
+
+        menuDataBuku.setText("Data Buku");
+        menuDataBuku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuDataBukuActionPerformed(evt);
+            }
+        });
+        menuAdmin.add(menuDataBuku);
+
+        jMenuBar1.add(menuAdmin);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
@@ -111,22 +188,19 @@ public class searchView extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cariButton))
-                            .addComponent(title))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(loginButton))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(0, 5, Short.MAX_VALUE)))
-                .addGap(1, 1, 1)
-                .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(title)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(loginButton))))
+                    .addComponent(jButton1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(23, 23, 23)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,18 +220,17 @@ public class searchView extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cariButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariButtonActionPerformed
-        // TODO add your handling code here
-        List<String> list = new ArrayList<>();
+        List<Buku> list;
         list = controller.cariBuku(keywordBox.getText());
         /*Ini yg ditambahin ine*/
         ShowResult(list);
@@ -177,7 +250,23 @@ public class searchView extends javax.swing.JFrame {
 
     private void resultTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resultTableMouseClicked
         // TODO add your handling code here:
+        this.getRowValue();
     }//GEN-LAST:event_resultTableMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void menuDataAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDataAnggotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuDataAnggotaActionPerformed
+
+    private void menuDataBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDataBukuActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Bcontroller.openBuku();
+        dispose();
+    }//GEN-LAST:event_menuDataBukuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,24 +304,60 @@ public class searchView extends javax.swing.JFrame {
     }
     
      /*Ini yg ditambahin ine*/
-    private void ShowResult(List<String> resultList){
-        Vector<String> tableHeaders = new Vector<String>();
-        Vector tableData = new Vector();
-        tableHeaders.add("Judul");
+    private void ShowResult(List<Buku> resultList){
         
+        //Vector<String> tableHeaders = new Vector<String>();
+        //Vector tableData = new Vector();
+        /*tableHeaders.add("ISBN");
+        tableHeaders.add("Judul");
+        tableHeaders.add("Pengarang");
+        tableHeaders.add("Penerbit");
+        tableHeaders.add("Sinopsis");
+        tableHeaders.add("No.Rak");
+        tableHeaders.add("Stok");
+        tableHeaders.add("Pinjam");
+        */
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
         for(Object o : resultList){
-            String temp = (String)o;
-            Vector<Object> oneRow = new Vector<Object>();
-            oneRow.add(temp);
-            tableData.add(oneRow);
+            Buku temp = (Buku)o;
+            Object[] oneRow = new Object[7];
+            oneRow[0] = (temp.getISBN());
+            oneRow[1] = (temp.getJudul());
+            oneRow[2] = (temp.getAuthor());
+            oneRow[3] = (temp.getPenerbit());
+            oneRow[4] = (temp.getSinopsis());
+            oneRow[5] = (temp.getnoRak());
+            oneRow[6] = (temp.getStok());
+            
+            model.addRow(oneRow);
         }
-        resultTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+        //resultTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+    }
+    
+    private void getRowValue (){
+        int i = this.resultTable.getSelectedRow();
+        
+        if (i == -1)
+            return;
+       
+        String ISBN = (String)model.getValueAt(i, 0);
+        String Judul = (String)model.getValueAt(i, 1);
+        String Author = (String)model.getValueAt(i, 2);
+        String Penerbit = (String)model.getValueAt(i, 3);
+        String Sinopsis = (String)model.getValueAt(i, 4);
+        String noRak = (String)model.getValueAt(i, 5);
+        int stok = (int)model.getValueAt(i, 6);
+        Buku A = new Buku (ISBN, Judul, Author, Penerbit, Sinopsis, noRak, stok);
+        System.out.println(ISBN+Judul);
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cariButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollBar jScrollBar1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -241,6 +366,13 @@ public class searchView extends javax.swing.JFrame {
     private javax.swing.JTextPane keywordBox;
     private javax.swing.JLabel labelCariBuku;
     private javax.swing.JButton loginButton;
+    private javax.swing.JMenu menuAdmin;
+    private javax.swing.JMenuItem menuCari;
+    private javax.swing.JMenuItem menuDataAnggota;
+    private javax.swing.JMenuItem menuDataBuku;
+    private javax.swing.JMenuItem menuDenda;
+    private javax.swing.JMenuItem menuKembali;
+    private javax.swing.JMenu menuMember;
     private javax.swing.JTable resultTable;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables

@@ -36,12 +36,13 @@ public class bukuRepository implements Repository<Buku> {
         return list;
     }
     
-    public void initData(){
+    public List<Buku> initData(){
         try {
             list = createData();
         }
         catch(Exception e){ 
         }
+        return list;
     }
     
     @Override

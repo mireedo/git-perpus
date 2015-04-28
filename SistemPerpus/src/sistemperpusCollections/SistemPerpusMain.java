@@ -15,13 +15,13 @@ import sistemperpusController.*;
 public class SistemPerpusMain {
      public static void main(String[] args) {
         // TODO code application logic here
-        bukuRepository A = new bukuRepository();
+        /*bukuRepository A = new bukuRepository();
         List<Buku> bukuRep =  A.initData();
         
         anggotaRepository B = new anggotaRepository();
         List<Anggota> anggotaRep =  B.initData();
-        
-        searchController controller = new searchController(bukuRep, anggotaRep);
+        */
+        searchController controller = new searchController();
         // Start the application
         controller.startApplication();
     }

@@ -19,7 +19,7 @@ public class Buku { //implements ILibrary, IBuku
    private String noRak;
    private int stok;
    
-   bukuRepository repository = new bukuRepository ();
+   bukuRepository repository = new bukuRepository();
    
    public Buku (String ISBN, String Judul, String Penerbit, String Author, 
            String Sinopsis, String Rak, int Stok) {
@@ -33,13 +33,14 @@ public class Buku { //implements ILibrary, IBuku
    }//b = string.matches("(?i).*i am.*");
    
    public List<Buku> cariBuku (String keyword){
-        List<Buku> list = repository.FindAll();
-        List<Buku> result = new ArrayList();
-        for (Buku list1 : list) {
-            if (((list1.getJudul().toLowerCase()).indexOf(keyword)) >= 0 ) {
-                result.add(list1);
-            }
-        }
+       repository.initData();
+       List<Buku> temp = repository.FindAll();
+       List<Buku> result = new ArrayList();
+       for (Buku rep1 : temp) {
+           if (((rep1.getJudul().toLowerCase()).indexOf(keyword)) >= 0) {
+               result.add(rep1);
+           }
+       }
         return result;
    }
    
