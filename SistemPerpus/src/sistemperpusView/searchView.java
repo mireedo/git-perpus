@@ -6,6 +6,8 @@
 package sistemperpusView;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 import sistemperpusController.*;
 
 /**
@@ -77,6 +79,14 @@ public class searchView extends javax.swing.JFrame {
             }
         });
 
+        resultTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         resultTable.setColumnSelectionAllowed(true);
         resultTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -149,10 +159,15 @@ public class searchView extends javax.swing.JFrame {
         // TODO add your handling code here
         List<String> list = new ArrayList<>();
         list = controller.cariBuku(keywordBox.getText());
+        /*Ini yg ditambahin ine*/
+        ShowResult(list);
+        
+        /*
         for (Object list1 : list) {
             System.out.println(list1.toString());
         }
         System.out.println("Total : "+list.size());
+        */
     }//GEN-LAST:event_cariButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
@@ -197,6 +212,21 @@ public class searchView extends javax.swing.JFrame {
                 new searchView().setVisible(true);
             }
         });
+    }
+    
+     /*Ini yg ditambahin ine*/
+    private void ShowResult(List<String> resultList){
+        Vector<String> tableHeaders = new Vector<String>();
+        Vector tableData = new Vector();
+        tableHeaders.add("Judul");
+        
+        for(Object o : resultList){
+            String temp = (String)o;
+            Vector<Object> oneRow = new Vector<Object>();
+            oneRow.add(temp);
+            tableData.add(oneRow);
+        }
+        resultTable.setModel(new DefaultTableModel(tableData, tableHeaders));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
