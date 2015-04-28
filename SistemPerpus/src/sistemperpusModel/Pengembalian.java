@@ -13,8 +13,11 @@ import java.util.Date;
  */
 public class Pengembalian {
     
-    private Peminjaman peminjaman;
-    private Date tglPengembalian;
+    //private Peminjaman peminjaman;
+    private Date tglPengembalian; 
+    private int denda;
+    Peminjaman peminjaman = new Peminjaman();
+    
    
    public Peminjaman getPeminjaman() {      
       return null;
@@ -32,8 +35,12 @@ public class Pengembalian {
         this.tglPengembalian = Kembali;
    }
 
-   public int hitungDenda() {
-      
-      return 0;
+   public int hitungDenda(Date tglPengembalian) {
+       /*if tglPengembalian <= tgl.Kembali{
+           denda = 0;
+       }else{
+           denda = (tgl.Pengembalian - tgl.Kembali) * 5000;
+       }*/
+        return denda;
    }
 }
