@@ -3,38 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sistemperpusView;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import javax.swing.table.DefaultTableModel;
-import sistemperpusModel.*;
 import sistemperpusController.*;
 /**
  *
- * @author Lenovo
+ * @author Mira
  */
-public class peminjamanView extends javax.swing.JFrame {
+public class formPinjam extends javax.swing.JFrame {
     olahBukuController Bcontroller = new olahBukuController();
     olahAnggotaController Acontroller = new olahAnggotaController();
     searchController Scontroller = new searchController();
     peminjamanController controller = new peminjamanController();
-    List<Peminjaman> repPem = new ArrayList();
-    DefaultTableModel model = new DefaultTableModel();
-    Peminjaman temp;
     /**
-     * Creates new form peminjamanView
+     * Creates new form formPinjam
      */
-    public peminjamanView() {
-        repPem = controller.initData();
+    public formPinjam() {
         initComponents();
-        this.resultTable.setModel(model);
-        model.addColumn("NIP/NIM");
-        model.addColumn("ISBN");
-        model.addColumn("Tgl. Pinjam");
-        model.addColumn("Tgl. Kembali");
-        ShowResult(repPem);
     }
 
     /**
@@ -47,9 +31,17 @@ public class peminjamanView extends javax.swing.JFrame {
     private void initComponents() {
 
         title = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        resultTable = new javax.swing.JTable();
+        labelNIPM = new javax.swing.JLabel();
+        labelISBN = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuMember = new javax.swing.JMenu();
         menuCari = new javax.swing.JMenuItem();
@@ -63,25 +55,37 @@ public class peminjamanView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(737, 489));
-        setResizable(false);
 
         title.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         title.setText("e-Library Polban");
 
-        jLabel1.setText("Data Peminjaman Buku");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Form Peminjaman");
 
-        resultTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Anggota", "Judul", "Tanggal Pinjam", "Tanggal Harus Kembali"
+        labelNIPM.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelNIPM.setText("NIP/NIM");
+
+        labelISBN.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelISBN.setText("ISBN");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Tgl. Pinjam");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("Tgl. Kembali");
+
+        jTextField2.setEditable(false);
+
+        jTextField3.setEditable(false);
+
+        jTextField4.setEditable(false);
+
+        jButton1.setText("Pinjam");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(resultTable);
+        });
 
         menuMember.setText("Anggota");
 
@@ -134,25 +138,64 @@ public class peminjamanView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(title))
-                        .addGap(0, 532, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(title)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(184, 184, 184)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelNIPM)
+                            .addComponent(labelISBN)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(60, 60, 60)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(29, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(92, 92, 92))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(1, 1, 1)
                 .addComponent(jLabel1)
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(3, 3, 3)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(labelNIPM))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelISBN)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addComponent(jButton1)
+                .addGap(100, 100, 100))
         );
 
         pack();
@@ -167,7 +210,6 @@ public class peminjamanView extends javax.swing.JFrame {
 
     private void menuDataAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDataAnggotaActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_menuDataAnggotaActionPerformed
 
     private void menuDataBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDataBukuActionPerformed
@@ -176,6 +218,10 @@ public class peminjamanView extends javax.swing.JFrame {
         Bcontroller.openBuku();
         dispose();
     }//GEN-LAST:event_menuDataBukuActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,58 +240,37 @@ public class peminjamanView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(peminjamanView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formPinjam.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(peminjamanView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formPinjam.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(peminjamanView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formPinjam.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(peminjamanView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formPinjam.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new peminjamanView().setVisible(true);
+                new formPinjam().setVisible(true);
             }
         });
     }
-    
-    private void ShowResult(List<Peminjaman> resultList){
-    
-        model.getDataVector().removeAllElements();
-        model.fireTableDataChanged();
-        for(Object o : resultList){
-            Peminjaman A = (Peminjaman)o;
-            Object[] oneRow = new Object[4];
-            oneRow[0] = (A.nipm);
-            oneRow[1] = (A.isbn);
-            oneRow[2] = (A.tgl_pinjam);
-            oneRow[3] = (A.tgl_kembali);
-            
-            model.addRow(oneRow);
-        }
-    }
-    
-    private void getRowValue (){
-        int i = this.resultTable.getSelectedRow();
-        
-        if (i == -1)
-            return;
-       
-        String NIPM = (String)model.getValueAt(i, 0);
-        String ISBN = (String)model.getValueAt(i, 1);
-        Date pinjam = (Date) model.getValueAt(i, 2);
-        Date kembali = (Date) model.getValueAt(i, 3);
-        temp = new Peminjaman (NIPM, ISBN, pinjam, kembali);
-        System.out.println(NIPM+" | "+ISBN);    
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel labelISBN;
+    private javax.swing.JLabel labelNIPM;
     private javax.swing.JMenu menuAdmin;
     private javax.swing.JMenuItem menuCari;
     private javax.swing.JMenuItem menuDataAnggota;
@@ -255,7 +280,6 @@ public class peminjamanView extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuDenda;
     private javax.swing.JMenuItem menuKembali;
     private javax.swing.JMenu menuMember;
-    private javax.swing.JTable resultTable;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

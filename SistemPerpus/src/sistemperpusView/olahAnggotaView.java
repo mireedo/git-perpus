@@ -24,6 +24,8 @@ public class olahAnggotaView extends javax.swing.JFrame {
     Anggota temp;
     SimpleDateFormat dt = new SimpleDateFormat("dd/MM/YYYY");
     olahAnggotaController controller = new olahAnggotaController();
+    olahBukuController Bcontroller = new olahBukuController();
+    searchController Scontroller = new searchController();
     DefaultTableModel model = new DefaultTableModel();
     /**
      * Creates new form olahAnggotaView
@@ -218,6 +220,11 @@ public class olahAnggotaView extends javax.swing.JFrame {
         menuMember.setText("Anggota");
 
         menuCari.setText("Cari Buku");
+        menuCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCariActionPerformed(evt);
+            }
+        });
         menuMember.add(menuCari);
 
         menuKembali.setText("Pengembalian");
@@ -295,11 +302,14 @@ public class olahAnggotaView extends javax.swing.JFrame {
 
     private void menuDataAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDataAnggotaActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_menuDataAnggotaActionPerformed
 
     private void menuDataBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDataBukuActionPerformed
         // TODO add your handling code here:
-
+        this.setVisible(false);
+        Bcontroller.openBuku();
+        dispose();
     }//GEN-LAST:event_menuDataBukuActionPerformed
 
     private void resultTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resultTableMouseClicked
@@ -319,6 +329,13 @@ public class olahAnggotaView extends javax.swing.JFrame {
                 temp.getTotalPinjam(), temp.getTglExpire(), temp.getDenda(), repAnggota);
         ShowResult(repAnggota);
     }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void menuCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCariActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Scontroller.startApplication();
+        dispose();
+    }//GEN-LAST:event_menuCariActionPerformed
 
     /**
      * @param args the command line arguments

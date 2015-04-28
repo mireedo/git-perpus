@@ -19,6 +19,8 @@ public class olahBukuView extends javax.swing.JFrame {
     List<Buku> repBuku = new ArrayList();
     Buku temp;
     olahBukuController controller = new olahBukuController();
+    olahAnggotaController Acontroller = new olahAnggotaController();
+    searchController Scontroller = new searchController();
     DefaultTableModel model = new DefaultTableModel();
     /**
      * Creates new form olahBukuView
@@ -262,6 +264,11 @@ public class olahBukuView extends javax.swing.JFrame {
         menuMember.setText("Anggota");
 
         menuCari.setText("Cari Buku");
+        menuCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCariActionPerformed(evt);
+            }
+        });
         menuMember.add(menuCari);
 
         menuKembali.setText("Pengembalian");
@@ -339,6 +346,9 @@ public class olahBukuView extends javax.swing.JFrame {
 
     private void menuDataAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDataAnggotaActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        Acontroller.openAnggota();
+        dispose();
     }//GEN-LAST:event_menuDataAnggotaActionPerformed
 
     private void menuDataBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDataBukuActionPerformed
@@ -362,6 +372,13 @@ public class olahBukuView extends javax.swing.JFrame {
         repBuku = controller.updateBuku(temp, repBuku);
         ShowResult(repBuku);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void menuCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCariActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Acontroller.openAnggota();
+        dispose();
+    }//GEN-LAST:event_menuCariActionPerformed
 
     /**
      * @param args the command line arguments
