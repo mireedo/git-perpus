@@ -114,7 +114,7 @@ public class Buku { //implements ILibrary, IBuku
    
    public Boolean cekStok() {
       // TODO: implement
-      return null;
+      return (this.getStok() > 0);
    }
 
 }

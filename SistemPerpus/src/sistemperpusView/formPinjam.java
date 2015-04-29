@@ -4,7 +4,12 @@
  * and open the template in the editor.
  */
 package sistemperpusView;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import sistemperpusController.*;
+import sistemperpusModel.*;
 /**
  *
  * @author Mira
@@ -14,11 +19,25 @@ public class formPinjam extends javax.swing.JFrame {
     olahAnggotaController Acontroller = new olahAnggotaController();
     searchController Scontroller = new searchController();
     peminjamanController controller = new peminjamanController();
+    SimpleDateFormat dt = new SimpleDateFormat ("dd/MM/YYYY");
+    static Buku Btemp;
+    Peminjaman temp;
+    List[] container = new ArrayList[2];
+    List<Anggota> aRep = new ArrayList();
+    List<Buku> bRep = new ArrayList();
     /**
      * Creates new form formPinjam
+     * @param A
      */
-    public formPinjam() {
+    public formPinjam(Buku A) {
         initComponents();
+        Btemp = A;
+        temp = controller.initForm(Btemp);
+        this.boxISBN.setText(temp.isbn);
+        this.boxKembali.setText(dt.format(temp.tgl_kembali));
+        this.boxPinjam.setText(dt.format(temp.tgl_pinjam));
+        aRep = Acontroller.initData();
+        bRep = Bcontroller.initData();
     }
 
     /**
@@ -37,10 +56,10 @@ public class formPinjam extends javax.swing.JFrame {
         labelISBN = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        boxNIPM = new javax.swing.JTextField();
+        boxISBN = new javax.swing.JTextField();
+        boxPinjam = new javax.swing.JTextField();
+        boxKembali = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuMember = new javax.swing.JMenu();
@@ -53,7 +72,7 @@ public class formPinjam extends javax.swing.JFrame {
         menuDataPinjam = new javax.swing.JMenuItem();
         menuDataKembali = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(737, 489));
 
         title.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -74,11 +93,14 @@ public class formPinjam extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Tgl. Kembali");
 
-        jTextField2.setEditable(false);
+        boxISBN.setEditable(false);
+        boxISBN.setText(" ");
 
-        jTextField3.setEditable(false);
+        boxPinjam.setEditable(false);
+        boxPinjam.setText(" ");
 
-        jTextField4.setEditable(false);
+        boxKembali.setEditable(false);
+        boxKembali.setText(" ");
 
         jButton1.setText("Pinjam");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -156,10 +178,10 @@ public class formPinjam extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addGap(60, 60, 60)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(boxKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boxPinjam, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boxISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boxNIPM, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(29, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -180,19 +202,19 @@ public class formPinjam extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(labelNIPM))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxNIPM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelISBN)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxPinjam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxKembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addComponent(jButton1)
                 .addGap(100, 100, 100))
@@ -221,6 +243,15 @@ public class formPinjam extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        if (boxNIPM.getText().equals(""))
+            JOptionPane.showMessageDialog(null,"NIP/NIM tidak boleh kosong!");
+        else {
+            temp.nipm = boxNIPM.getText();
+            controller.pinjam(temp, aRep, bRep);
+            //aRep.clear(); bRep.clear();
+            //aRep.addAll(container[0]);
+            //bRep.addAll(container[1]);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -253,22 +284,22 @@ public class formPinjam extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new formPinjam().setVisible(true);
+                new formPinjam(Btemp).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField boxISBN;
+    private javax.swing.JTextField boxKembali;
+    private javax.swing.JTextField boxNIPM;
+    private javax.swing.JTextField boxPinjam;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel labelISBN;
     private javax.swing.JLabel labelNIPM;
     private javax.swing.JMenu menuAdmin;

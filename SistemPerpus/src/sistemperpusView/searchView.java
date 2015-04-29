@@ -32,6 +32,8 @@ public class searchView extends javax.swing.JFrame {
     loginController Lcontroller = new loginController();
     olahAnggotaController Acontroller = new olahAnggotaController();
     olahBukuController  Bcontroller = new olahBukuController();
+    peminjamanController Pcontroller = new peminjamanController();
+    Buku temp;
     public searchView() {
         initComponents();
         this.resultTable.setModel(model);
@@ -264,6 +266,7 @@ public class searchView extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        Pcontroller.openFormPinjam(temp);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void menuDataAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDataAnggotaActionPerformed
@@ -360,8 +363,8 @@ public class searchView extends javax.swing.JFrame {
         String Sinopsis = (String)model.getValueAt(i, 4);
         String noRak = (String)model.getValueAt(i, 5);
         int stok = (int)model.getValueAt(i, 6);
-        Buku A = new Buku (ISBN, Judul, Author, Penerbit, Sinopsis, noRak, stok);
-        System.out.println(ISBN+Judul);
+        temp = new Buku (ISBN, Judul, Author, Penerbit, Sinopsis, noRak, stok);
+        System.out.println(temp.getISBN()+" | "+temp.getJudul());
         
     }
 
